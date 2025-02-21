@@ -12,8 +12,8 @@ public class GenerateResourceFiltersTest {
 	@Test
 	public void testYmlFilesParseIntoPropertiesCorrectly() throws Exception {
 		ConfigProject configProject = new ConfigProject("config-test-parent");
-		configProject.executeGoal("clean", "-N", "-X");
-		configProject.executeGoal("compile", "-N", "-X");
+		configProject.executeGoal("clean", "-N", "-X", "-U");
+		configProject.executeGoal("compile", "-N", "-X", "-U");
 
 		File generatedPropertiesFile = configProject.testFileExists("configuration/constants.properties");
 		Properties p = new Properties();
@@ -31,12 +31,12 @@ public class GenerateResourceFiltersTest {
 	@Test
 	public void testPropertiesFilesLoadedCorrectly() throws Exception {
 		ConfigProject parentProject = new ConfigProject("config-test-parent");
-		parentProject.executeGoal("clean", "-N", "-X");
-		parentProject.executeGoal("install", "-N", "-X");
+		parentProject.executeGoal("clean", "-N", "-X", "-U");
+		parentProject.executeGoal("install", "-N", "-X", "-U");
 
 		ConfigProject childProject = new ConfigProject("config-test-child");
-		childProject.executeGoal("clean", "-N", "-X");
-		childProject.executeGoal("compile", "-N", "-X");
+		childProject.executeGoal("clean", "-N", "-X", "-U");
+		childProject.executeGoal("compile", "-N", "-X", "-U");
 
 		File generatedPropertiesFile = childProject.testFileExists("configuration/constants.properties");
 		Properties p = new Properties();
